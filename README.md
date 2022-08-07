@@ -106,7 +106,7 @@
     Restarting MySQL...
     NOTE: MySQL server at db-0:3306 was restarted.
 ```
-3. Подключаемся к первому локальному экземпляру ```shell.connect('clusteradmin@db-0:3306');```
+3. Подключиться к первому локальному экземпляру ```shell.connect('clusteradmin@db-0:3306');```
 ```js
     Creating a session to 'clusteradmin@db-0:3306'
     Please provide the password for 'clusteradmin@db-0:3306': **********                                 
@@ -117,7 +117,7 @@
     No default schema selected; type \use <schema> to set one.
     <ClassicSession:clusteradmin@db-0:3306>
 ```
-4. Создаем InnoDB кластер ```cluster = dba.createCluster('my_innodb_cluster', {ipAllowlist: '192.168.10.1,192.168.10.2,192.168.10.3,db-0,db-1,db-2'});```
+4. Создать InnoDB кластер ```cluster = dba.createCluster('my_innodb_cluster', {ipAllowlist: '192.168.10.1,192.168.10.2,192.168.10.3,db-0,db-1,db-2'});```
 ```js
     A new InnoDB cluster will be created on instance 'db-0:3306'.
 
@@ -135,7 +135,7 @@
     At least 3 instances are needed for the cluster to be able to withstand up to
     one server failure.
 ```
-5. Добавляем второй экземпляр в кластер InnoDB ```cluster.addInstance('clusteradmin@db-1:3306', {ipAllowlist: '192.168.10.1,192.168.10.2,192.168.10.3,db-0,db-1,db-2'});```
+5. Добавить второй экземпляр в кластер InnoDB ```cluster.addInstance('clusteradmin@db-1:3306', {ipAllowlist: '192.168.10.1,192.168.10.2,192.168.10.3,db-0,db-1,db-2'});```
 ```js
     NOTE: The target instance 'db-1:3306' has not been pre-provisioned (GTID set is empty). The Shell is unable to decide whether incremental state recovery can correctly provision it.
     The safest and most convenient way to provision a new instance is through automatic clone provisioning, which will completely overwrite the state of 'db-1:3306' with a physical snapshot from an existing cluster member. To use this method by default, set the 'recoveryMethod' option to 'clone'.
@@ -182,7 +182,7 @@
 
     The instance 'db-1:3306' was successfully added to the cluster.
 ```
-6. Добавляем третий экземпляр в кластер InnoDB ```cluster.addInstance('clusteradmin@db-2:3306', {ipAllowlist: '192.168.10.1,192.168.10.2,192.168.10.3,db-0,db-1,db-2'});```
+6. Добавить третий экземпляр в кластер InnoDB ```cluster.addInstance('clusteradmin@db-2:3306', {ipAllowlist: '192.168.10.1,192.168.10.2,192.168.10.3,db-0,db-1,db-2'});```
 ```js
     NOTE: The target instance 'db-2:3306' has not been pre-provisioned (GTID set is empty). The Shell is unable to decide whether incremental state recovery can correctly provision it.
     The safest and most convenient way to provision a new instance is through automatic clone provisioning, which will completely overwrite the state of 'db-2:3306' with a physical snapshot from an existing cluster member. To use this method by default, set the 'recoveryMethod' option to 'clone'.
@@ -229,7 +229,7 @@
 
     The instance 'db-2:3306' was successfully added to the cluster.
 ```
-7. Проверяем текущий статус кластера InnoDB ```cluster.status()```
+7. Проверить текущий статус кластера InnoDB ```cluster.status()```
 ```js
     {
         "clusterName": "my_innodb_cluster", 
@@ -276,7 +276,7 @@
         "groupInformationSourceMember": "db-0:3306"
     }
 ```
-8. Переключаем кластер в режим мультимастера ```cluster.switchToMultiPrimaryMode()```
+8. Переключить кластер в режим мультимастера ```cluster.switchToMultiPrimaryMode()```
 ```js
     Switching cluster 'my_innodb_cluster' to Multi-Primary mode...
 
@@ -289,7 +289,7 @@
 
 ### Настройка MySQL Router на web серверах:
 
-1. Выполняем команду ```mysqlrouter --bootstrap clusteradmin@db-0:3306 --directory /home/user/myrouter --conf-use-sockets --account routerfriend --account-create always```
+1. Выполнить команду ```mysqlrouter --bootstrap clusteradmin@db-0:3306 --directory /home/user/myrouter --conf-use-sockets --account routerfriend --account-create always```
 ```js
     Please enter MySQL password for clusteradmin: 
     # Bootstrapping MySQL Router instance at '/home/user/myrouter'...
@@ -319,4 +319,4 @@
     - Read/Write Connections: localhost:6448, /home/user/myrouter/mysqlx.sock
     - Read/Only Connections:  localhost:6449, /home/user/myrouter/mysqlxro.sock
 ```
-2. Запускаем MySQL Router ```/home/user/myrouter/start.sh ```
+2. Запустить MySQL Router ```/home/user/myrouter/start.sh ```
